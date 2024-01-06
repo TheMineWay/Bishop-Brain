@@ -27,7 +27,7 @@ export default function Navbar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <img src={logo} className={styles.logo} />
+          <img alt="Logo" src={logo} className={styles.logo} />
           <p className="font-bold text-inherit">Bishop Brain</p>
         </NavbarBrand>
       </NavbarContent>
