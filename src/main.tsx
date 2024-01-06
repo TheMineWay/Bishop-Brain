@@ -4,10 +4,9 @@ import App from "./app";
 import Providers from "./providers/providers";
 import { setupI18n } from "./i18n/setup-i18n";
 import { initAnalytics } from "./utils/analytics/init-analytics";
+import { BrowserRouter } from "react-router-dom";
 
 import "./index.pcss";
-import "./reset.pcss";
-import { BrowserRouter } from "react-router-dom";
 
 setupI18n();
 initAnalytics();
