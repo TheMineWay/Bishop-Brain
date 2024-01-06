@@ -1,1 +1,8 @@
-{}
+{
+    "navbar": {
+        "actions": {
+            "Close-menu": "Close menu",
+            "Open-menu": "Open menu"
+        }
+    }
+}
