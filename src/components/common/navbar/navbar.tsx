@@ -18,10 +18,13 @@ import { routes } from "../../../router/routes";
 import { FaGithub } from "react-icons/fa";
 import pj from "@src/../package.json";
 import styles from "./navbar.module.pcss";
+import { useInstallableStatus } from "../../../hooks/core/pwa/use-installable-status";
+import { RiInstallLine } from "react-icons/ri";
 
 export default function Navbar() {
   const { t } = useTranslation([Translation.LAYOUT]);
   const navigate = useNavigate();
+  const { isInstallable, install } = useInstallableStatus();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -73,6 +76,13 @@ export default function Navbar() {
             <FaGithub />
           </Button>
         </NavbarItem>
+        {isInstallable && (
+          <NavbarItem>
+            <Button onClick={install} isIconOnly variant="flat">
+              <RiInstallLine />
+            </Button>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarMenu>
