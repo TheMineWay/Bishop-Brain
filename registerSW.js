@@ -1,1 +1,1 @@
-if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/bishop-brain/sw.js', { scope: '/bishop-brain/' })})}
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/Bishop-Brain/sw.js', { scope: '/Bishop-Brain/' })})}
