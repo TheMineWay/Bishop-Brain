@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import GlobalLayout from "./layouts/global/global.layout";
-import { Button } from "@nextui-org/react";
 import styles from "./app.module.pcss";
+import Router from "./router/router";
+import routes_definition from "./router/routes-definition";
 
 export default function App() {
   return (
@@ -12,9 +13,7 @@ export default function App() {
       )}
     >
       <GlobalLayout>
-        <>
-          <Button>CONTENT</Button>
-        </>
+        <Router routes={routes_definition} />
       </GlobalLayout>
     </main>
   );
