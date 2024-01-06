@@ -7,14 +7,17 @@ import { initAnalytics } from "./utils/analytics/init-analytics";
 
 import "./index.pcss";
 import "./reset.pcss";
+import { BrowserRouter } from "react-router-dom";
 
 setupI18n();
 initAnalytics();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Providers>
-      <App />
-    </Providers>
+    <BrowserRouter basename="Bishop-Brain">
+      <Providers>
+        <App />
+      </Providers>
+    </BrowserRouter>
   </React.StrictMode>
 );
