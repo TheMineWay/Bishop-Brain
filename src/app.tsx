@@ -8,8 +8,6 @@ export default function App() {
         styles.container,
         "light text-foreground bg-background"
       )}
-    >
-      <p>a</p>
-    </main>
+    ></main>
   );
 }
