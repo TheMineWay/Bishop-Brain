@@ -1,0 +1,15 @@
+version: "3.1"
+services:
+  react:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: bishop-brain_DEV
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    command: "npm run dev"
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    tty: true
