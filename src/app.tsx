@@ -6,7 +6,7 @@ export default function App() {
     <main
       className={classNames(
         styles.container,
-        "dark text-foreground bg-background"
+        "light text-foreground bg-background"
       )}
     >
       <p>a</p>

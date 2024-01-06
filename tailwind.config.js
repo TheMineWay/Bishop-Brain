@@ -10,7 +10,11 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {},
+    }),
+  ],
   corePlugins: {
     preflight: false,
   },
