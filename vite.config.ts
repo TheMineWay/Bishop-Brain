@@ -22,5 +22,5 @@ export default defineConfig({
       },
     },
   },
-  base: "/bishop-brain",
+  base: "/Bishop-Brain",
 });
