@@ -7,6 +7,8 @@ import {
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Translation } from "../../../i18n/translation.enum";
+import logo from "@assets/brand/logo.png";
+import styles from "./navbar.module.pcss";
 
 export default function Navbar() {
   const { t } = useTranslation([Translation.LAYOUT]);
@@ -25,7 +27,8 @@ export default function Navbar() {
           className="sm:hidden"
         />
         <NavbarBrand>
-          <p className="font-bold text-inherit">ACME</p>
+          <img src={logo} className={styles.logo} />
+          <p className="font-bold text-inherit">Bishop Brain</p>
         </NavbarBrand>
       </NavbarContent>
     </NextNavbar>
