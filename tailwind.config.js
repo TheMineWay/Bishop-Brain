@@ -29,8 +29,5 @@ export default {
       layout: {}, // common layout tokens (applied to all themes)
     }),
   ],
-  corePlugins: {
-    preflight: false,
-  },
   darkMode: "class",
 };
