@@ -24,7 +24,7 @@
     "react-ga": "^3.3.1",
     "react-i18next": "^14.0.0",
     "react-router-dom": "^6.21.1",
-    "sort-by": "^1.2.0"
+    "sort-by": "^0.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.47",
