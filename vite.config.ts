@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import { VitePWA } from "vite-plugin-pwa";
+import * as path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,4 +24,10 @@ export default defineConfig({
     },
   },
   base: "/Bishop-Brain",
+  resolve: {
+    alias: [
+      { find: "@src", replacement: path.resolve(__dirname, "src") },
+      { find: "@assets", replacement: path.resolve(__dirname, "src/assets") },
+    ],
+  },
 });

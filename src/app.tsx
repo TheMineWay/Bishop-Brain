@@ -1,4 +1,5 @@
 import classNames from "classnames";
+import GlobalLayout from "./layouts/global/global.layout";
 import styles from "./app.module.pcss";
 import Router from "./router/router";
 import routes_definition from "./router/routes-definition";
@@ -11,7 +12,9 @@ export default function App() {
         "light text-foreground bg-background"
       )}
     >
-      <Router routes={routes_definition} />
+      <GlobalLayout>
+        <Router routes={routes_definition} />
+      </GlobalLayout>
     </main>
   );
 }

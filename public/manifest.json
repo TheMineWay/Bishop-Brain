@@ -1,7 +1,7 @@
 {
   "name": "Bishop Brain",
   "short_name": "Bishop Brain",
-  "start_url": "/",
+  "start_url": "/Bishop-Brain",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",

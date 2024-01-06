@@ -1,5 +1,6 @@
 {
   "name": "bishop-brain",
+  "displayname": "Bishop Brain",
   "homepage": "https://themineway.github.io/Bishop-Brain",
   "repository": "https://github.com/TheMineWay/Bishop-Brain",
   "author": "TheMineWay",
@@ -23,6 +24,7 @@
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
     "react-i18next": "^14.0.0",
+    "react-icons": "^4.12.0",
     "react-router-dom": "^6.21.1",
     "sort-by": "^0.0.2"
   },
@@ -37,6 +39,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.33",
+    "postcss-import": "^16.0.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",

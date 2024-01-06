@@ -1,1 +1,16 @@
-{}
+{
+    "navbar": {
+        "actions": {
+            "Close-menu": "Close menu",
+            "Open-menu": "Open menu"
+        },
+        "items": {
+            "home": {
+                "Label": "Home"
+            },
+            "info": {
+                "Label": "About"
+            }
+        }
+    }
+}
