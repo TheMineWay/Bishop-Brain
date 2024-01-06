@@ -1,5 +1,8 @@
 {
   "name": "bishop-brain",
+  "homepage": "https://themineway.github.io/Bishop-Brain",
+  "repository": "https://github.com/TheMineWay/Bishop-Brain",
+  "author": "TheMineWay",
   "private": true,
   "version": "0.0.0",
   "type": "module",
