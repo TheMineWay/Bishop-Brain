@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
@@ -15,6 +15,58 @@ export function useChessBoard(): IUseChessBoard {
   const indexCellsRef = useRef<Record<string | number, HTMLDivElement | null>>(
     {}
   );
+
+  // Hover effect
+  useEffect(() => {
+    // Check if they are all ready
+    if (
+      Object.keys(boardCellsRef.current).length < 64 ||
+      Object.keys(indexCellsRef.current).length < 16
+    )
+      return;
+
+    const ev = (elements: (HTMLDivElement | null)[], highlight: boolean) => {
+      if (highlight) {
+        for (const element of elements) {
+          element?.setAttribute("hidden", "true");
+        }
+      } else {
+        for (const element of elements) {
+          element?.removeAttribute("hidden");
+        }
+      }
+    };
+
+    const enterEvents: { [x: string]: () => void } = {};
+    const leaveEvents: { [x: string]: () => void } = {};
+
+    for (const [key, element] of Object.entries(boardCellsRef.current)) {
+      if (!element) continue;
+
+      const [row, cell] = key.split("");
+      const [rowElement, cellElement] = [
+        indexCellsRef.current[row],
+        indexCellsRef.current[cell],
+      ];
+
+      enterEvents[`${row}${cell}`] = () => ev([rowElement, cellElement], true);
+      leaveEvents[`${row}${cell}`] = () => ev([rowElement, cellElement], false);
+
+      element.addEventListener("mouseenter", enterEvents[`${row}${cell}`]);
+      element.addEventListener("mouseleave", leaveEvents[`${row}${cell}`]);
+    }
+
+    return () => {
+      for (const [key, element] of Object.entries(boardCellsRef.current)) {
+        if (!element) continue;
+
+        const [row, cell] = key.split("");
+
+        element.removeEventListener("mouseenter", enterEvents[`${row}${cell}`]);
+        element.removeEventListener("mouseleave", leaveEvents[`${row}${cell}`]);
+      }
+    };
+  }, [boardCellsRef, indexCellsRef]);
 
   const [boardState, setBoardState] = useState<BoardState>(
     CHESS_BOARD_DEFAULT_DISPLAY
