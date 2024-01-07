@@ -1,12 +1,12 @@
 import classNames from "classnames";
-import { ChessBoardController } from "../../../services/chess/board/chess-board.controller";
 
 import styles from "./chess-board.module.pcss";
 import Piece from "../piece/piece";
 import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
+import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 
 type Props = {
-  controller: ChessBoardController;
+  chessBoardInstance: IUseChessBoard;
 };
 
 const WHITE = "bg-white",

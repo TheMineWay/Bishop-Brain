@@ -1,7 +1,9 @@
 import ChessBoard from "../../components/chess/board/chess-board";
-import { ChessBoardController } from "../../services/chess/board/chess-board.controller";
+import { useChessBoard } from "../../hooks/chess/board/use-chess-board";
 
 export default function HomePage() {
+  const chessBoardInstance = useChessBoard();
+
   return (
     <div
       style={{
@@ -11,7 +13,7 @@ export default function HomePage() {
         alignItems: "center",
       }}
     >
-      <ChessBoard controller={new ChessBoardController()} />
+      <ChessBoard chessBoardInstance={chessBoardInstance} />
     </div>
   );
 }
