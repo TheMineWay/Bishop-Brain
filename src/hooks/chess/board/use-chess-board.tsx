@@ -40,6 +40,7 @@ export function useChessBoard(): IUseChessBoard {
     const enterEvents: { [x: string]: () => void } = {};
     const leaveEvents: { [x: string]: () => void } = {};
 
+    // Generate events
     for (const [key, element] of Object.entries(boardCellsRef.current)) {
       if (!element) continue;
 
@@ -49,6 +50,7 @@ export function useChessBoard(): IUseChessBoard {
         indexCellsRef.current[cell],
       ];
 
+      // Store events so they can be destroyed later
       enterEvents[`${row}${cell}`] = () => ev([rowElement, cellElement], true);
       leaveEvents[`${row}${cell}`] = () => ev([rowElement, cellElement], false);
 
@@ -56,6 +58,7 @@ export function useChessBoard(): IUseChessBoard {
       element.addEventListener("mouseleave", leaveEvents[`${row}${cell}`]);
     }
 
+    // Destroy events on derender
     return () => {
       for (const [key, element] of Object.entries(boardCellsRef.current)) {
         if (!element) continue;
