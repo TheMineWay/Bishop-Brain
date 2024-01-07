@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react";
 import {
   BoardPiece,
   BoardState,
@@ -20,4 +21,5 @@ export interface IUseChessBoard {
   // Raw
   boardState: BoardState;
   setBoardState: (boardState: BoardState) => void;
+  boardCellsRef: MutableRefObject<Record<string, HTMLDivElement | null>>;
 }

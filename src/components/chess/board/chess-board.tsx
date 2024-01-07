@@ -13,7 +13,7 @@ const WHITE = "bg-white",
 
 // eslint-disable-next-line no-empty-pattern
 export default function ChessBoard({
-  chessBoardInstance: { findByPosition },
+  chessBoardInstance: { findByPosition, boardCellsRef },
 }: Props) {
   const facingWhite = true;
 
@@ -45,6 +45,7 @@ export default function ChessBoard({
                       ? WHITE
                       : BLACK
                   )}
+                  ref={(el) => (boardCellsRef.current[`${row}${cell}`] = el)}
                 >
                   <div className={styles["piece-place"]}>
                     {piece && (

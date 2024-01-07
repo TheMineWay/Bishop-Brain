@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
@@ -11,6 +11,8 @@ export type BoardPiece = {
 export type BoardState = Record<string, BoardPiece>;
 
 export function useChessBoard(): IUseChessBoard {
+  const boardCellsRef = useRef<Record<string, HTMLDivElement | null>>({});
+
   const [boardState, setBoardState] = useState<BoardState>(
     CHESS_BOARD_DEFAULT_DISPLAY
   );
@@ -51,5 +53,6 @@ export function useChessBoard(): IUseChessBoard {
     // Raw
     boardState,
     setBoardState,
+    boardCellsRef,
   };
 }
