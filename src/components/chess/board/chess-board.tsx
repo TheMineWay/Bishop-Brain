@@ -9,8 +9,8 @@ type Props = {
   controller: ChessBoardController;
 };
 
-const WHITE = "white",
-  BLACK = "#434343";
+const WHITE = "bg-white",
+  BLACK = "bg-primary-300";
 
 // eslint-disable-next-line no-empty-pattern
 export default function ChessBoard({}: Props) {
@@ -33,16 +33,15 @@ export default function ChessBoard({}: Props) {
               return (
                 <div
                   key={c}
-                  className={styles.cell}
-                  style={{
-                    backgroundColor:
-                      (NUMS.findIndex((v) => v === row) +
-                        ABC.findIndex((v) => v === cell)) %
-                        2 ===
+                  className={classNames(
+                    styles.cell,
+                    (NUMS.findIndex((v) => v === row) +
+                      ABC.findIndex((v) => v === cell)) %
+                      2 ===
                       0
-                        ? WHITE
-                        : BLACK,
-                  }}
+                      ? WHITE
+                      : BLACK
+                  )}
                 >
                   <div className={styles["piece-place"]}>
                     <Piece chessPiece={ChessPiece.PAWN} />
