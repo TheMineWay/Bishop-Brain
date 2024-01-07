@@ -45,10 +45,30 @@ export function useChessBoard(): IUseChessBoard {
     return newState;
   };
 
+  const movePosition = (
+    fromRow: number,
+    fromCell: string,
+    toRow: number,
+    toCell: string
+  ) => {
+    const piece = findByPosition(fromRow, fromCell);
+    let state = deletePosition(fromRow, fromCell, { disableStateUpdate: true });
+
+    if (piece !== null) {
+      state = {
+        ...state,
+        ...setPosition(toRow, toCell, piece, { disableStateUpdate: true }),
+      };
+    }
+
+    setBoardState(state);
+  };
+
   return {
     findByPosition,
     setPosition,
     deletePosition,
+    movePosition,
 
     // Raw
     boardState,

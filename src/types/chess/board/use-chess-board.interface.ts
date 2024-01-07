@@ -17,6 +17,12 @@ export interface IUseChessBoard {
     cell: string,
     options?: { disableStateUpdate?: boolean }
   ) => BoardState;
+  movePosition: (
+    fromRow: number,
+    fromCell: string,
+    toRow: number,
+    toCell: string
+  ) => void;
 
   // Raw
   boardState: BoardState;
