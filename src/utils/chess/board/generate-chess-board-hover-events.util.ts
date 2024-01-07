@@ -1,15 +1,18 @@
 export const generateChessBoardHoverEvents = (
   boardCells: Record<string, HTMLDivElement | null>,
-  indexCells: Record<string | number, HTMLDivElement | null>
+  indexCells: Record<string | number, HTMLDivElement | null>,
+  options: {
+    hoverClassName: string;
+  }
 ) => {
   const ev = (elements: (HTMLDivElement | null)[], highlight: boolean) => {
     if (highlight) {
       for (const element of elements) {
-        element?.setAttribute("hidden", "true");
+        element?.classList.add(options.hoverClassName);
       }
     } else {
       for (const element of elements) {
-        element?.removeAttribute("hidden");
+        element?.classList.remove(options.hoverClassName);
       }
     }
   };

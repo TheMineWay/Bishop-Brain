@@ -3,6 +3,7 @@ import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
 import { generateChessBoardHoverEvents } from "../../../utils/chess/board/generate-chess-board-hover-events.util";
+import styles from "@src/components/chess/board/chess-board.module.pcss";
 
 export type BoardPiece = {
   piece: ChessPiece;
@@ -28,7 +29,10 @@ export function useChessBoard(): IUseChessBoard {
 
     const { destroyEvents } = generateChessBoardHoverEvents(
       boardCellsRef.current,
-      indexCellsRef.current
+      indexCellsRef.current,
+      {
+        hoverClassName: styles["hover-index"],
+      }
     );
 
     return destroyEvents;
