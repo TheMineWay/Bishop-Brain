@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { ChessBoardController } from "../../../services/chess/board/chess-board.controller";
 
 import styles from "./chess-board.module.pcss";
@@ -25,6 +26,7 @@ export default function ChessBoard({}: Props) {
 
         return (
           <div key={r} className={styles.row}>
+            <div className={classNames(styles.cell, styles.index)}>{row}</div>
             {[...new Array(8)].map((_, c) => {
               const cell = ABC[c];
 
@@ -51,6 +53,16 @@ export default function ChessBoard({}: Props) {
           </div>
         );
       })}
+      <div className={styles.row}>
+        <div className={classNames(styles.cell, styles.index)}>X</div>
+        {[...new Array(8)].map((_, c) => {
+          return (
+            <div key={c} className={classNames(styles.cell, styles.index)}>
+              {ABC[c]}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

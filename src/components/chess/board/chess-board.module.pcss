@@ -4,13 +4,13 @@ div.board {
   display: flex;
   flex-direction: column;
   background-color: lightgray;
-  padding: 1em;
+  padding: 1em 1em 0 0;
 
   div.row {
     display: flex;
 
     div.cell {
-      width: calc(100% / 8);
+      width: calc(100% / 9);
       aspect-ratio: 1;
       display: flex;
       justify-content: center;
@@ -20,6 +20,10 @@ div.board {
         height: 95%;
         width: 95%;
       }
+    }
+
+    div.index {
+      text-transform: capitalize;
     }
   }
 }
