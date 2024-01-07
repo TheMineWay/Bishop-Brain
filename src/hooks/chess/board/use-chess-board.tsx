@@ -12,6 +12,9 @@ export type BoardState = Record<string, BoardPiece>;
 
 export function useChessBoard(): IUseChessBoard {
   const boardCellsRef = useRef<Record<string, HTMLDivElement | null>>({});
+  const indexCellsRef = useRef<Record<string | number, HTMLDivElement | null>>(
+    {}
+  );
 
   const [boardState, setBoardState] = useState<BoardState>(
     CHESS_BOARD_DEFAULT_DISPLAY
@@ -74,5 +77,6 @@ export function useChessBoard(): IUseChessBoard {
     boardState,
     setBoardState,
     boardCellsRef,
+    indexCellsRef,
   };
 }

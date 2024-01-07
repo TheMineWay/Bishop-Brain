@@ -13,7 +13,7 @@ const WHITE = "bg-white",
 
 // eslint-disable-next-line no-empty-pattern
 export default function ChessBoard({
-  chessBoardInstance: { findByPosition, boardCellsRef },
+  chessBoardInstance: { findByPosition, boardCellsRef, indexCellsRef },
 }: Props) {
   const facingWhite = true;
 
@@ -27,7 +27,12 @@ export default function ChessBoard({
 
         return (
           <div key={r} className={styles.row}>
-            <div className={classNames(styles.cell, styles.index)}>{row}</div>
+            <div
+              className={classNames(styles.cell, styles.index)}
+              ref={(el) => (indexCellsRef.current[row] = el)}
+            >
+              {row}
+            </div>
             {[...new Array(8)].map((_, c) => {
               const cell = ABC[c];
 
@@ -62,7 +67,11 @@ export default function ChessBoard({
         <div className={classNames(styles.cell, styles.index)}></div>
         {[...new Array(8)].map((_, c) => {
           return (
-            <div key={c} className={classNames(styles.cell, styles.index)}>
+            <div
+              key={c}
+              className={classNames(styles.cell, styles.index)}
+              ref={(el) => (indexCellsRef.current[ABC[c]] = el)}
+            >
               {ABC[c]}
             </div>
           );
