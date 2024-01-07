@@ -2,13 +2,15 @@ import classNames from "classnames";
 import { ChessBoardController } from "../../../services/chess/board/chess-board.controller";
 
 import styles from "./chess-board.module.pcss";
+import Piece from "../piece/piece";
+import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 
 type Props = {
   controller: ChessBoardController;
 };
 
 const WHITE = "white",
-  BLACK = "black";
+  BLACK = "#434343";
 
 // eslint-disable-next-line no-empty-pattern
 export default function ChessBoard({}: Props) {
@@ -42,7 +44,9 @@ export default function ChessBoard({}: Props) {
                         : BLACK,
                   }}
                 >
-                  <div className={styles["piece-place"]}></div>
+                  <div className={styles["piece-place"]}>
+                    <Piece chessPiece={ChessPiece.PAWN} />
+                  </div>
                 </div>
               );
             })}

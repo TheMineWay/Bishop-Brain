@@ -28,6 +28,14 @@ export default defineConfig({
     alias: [
       { find: "@src", replacement: path.resolve(__dirname, "src") },
       { find: "@assets", replacement: path.resolve(__dirname, "src/assets") },
+      {
+        find: "@constants",
+        replacement: path.resolve(__dirname, "src/constants"),
+      },
+      {
+        find: "@types",
+        replacement: path.resolve(__dirname, "src/types"),
+      },
     ],
   },
 });
