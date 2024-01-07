@@ -24,7 +24,9 @@
     "types": ["node"],
     "paths": {
       "@src/*": ["./src/*"],
-      "@assets/*": ["./src/assets/*"]
+      "@assets/*": ["./src/assets/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@types/*": ["./src/types/*"]
     }
   },
   "include": ["src"],
