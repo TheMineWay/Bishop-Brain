@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
+import { generateChessBoardHoverEvents } from "../../../utils/chess/board/generate-chess-board-hover-events.util";
 
 export type BoardPiece = {
   piece: ChessPiece;
@@ -25,50 +26,12 @@ export function useChessBoard(): IUseChessBoard {
     )
       return;
 
-    const ev = (elements: (HTMLDivElement | null)[], highlight: boolean) => {
-      if (highlight) {
-        for (const element of elements) {
-          element?.setAttribute("hidden", "true");
-        }
-      } else {
-        for (const element of elements) {
-          element?.removeAttribute("hidden");
-        }
-      }
-    };
+    const { destroyEvents } = generateChessBoardHoverEvents(
+      boardCellsRef.current,
+      indexCellsRef.current
+    );
 
-    const enterEvents: { [x: string]: () => void } = {};
-    const leaveEvents: { [x: string]: () => void } = {};
-
-    // Generate events
-    for (const [key, element] of Object.entries(boardCellsRef.current)) {
-      if (!element) continue;
-
-      const [row, cell] = key.split("");
-      const [rowElement, cellElement] = [
-        indexCellsRef.current[row],
-        indexCellsRef.current[cell],
-      ];
-
-      // Store events so they can be destroyed later
-      enterEvents[`${row}${cell}`] = () => ev([rowElement, cellElement], true);
-      leaveEvents[`${row}${cell}`] = () => ev([rowElement, cellElement], false);
-
-      element.addEventListener("mouseenter", enterEvents[`${row}${cell}`]);
-      element.addEventListener("mouseleave", leaveEvents[`${row}${cell}`]);
-    }
-
-    // Destroy events on derender
-    return () => {
-      for (const [key, element] of Object.entries(boardCellsRef.current)) {
-        if (!element) continue;
-
-        const [row, cell] = key.split("");
-
-        element.removeEventListener("mouseenter", enterEvents[`${row}${cell}`]);
-        element.removeEventListener("mouseleave", leaveEvents[`${row}${cell}`]);
-      }
-    };
+    return destroyEvents;
   }, [boardCellsRef, indexCellsRef]);
 
   const [boardState, setBoardState] = useState<BoardState>(
