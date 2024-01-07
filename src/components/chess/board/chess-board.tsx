@@ -58,7 +58,7 @@ export default function ChessBoard({
         );
       })}
       <div className={styles.row}>
-        <div className={classNames(styles.cell, styles.index)}>X</div>
+        <div className={classNames(styles.cell, styles.index)}></div>
         {[...new Array(8)].map((_, c) => {
           return (
             <div key={c} className={classNames(styles.cell, styles.index)}>
