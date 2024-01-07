@@ -42,10 +42,7 @@ export default function ChessBoard({}: Props) {
                         : BLACK,
                   }}
                 >
-                  <div>
-                    {cell}
-                    {row}
-                  </div>
+                  <div className={styles["piece-place"]}></div>
                 </div>
               );
             })}
