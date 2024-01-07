@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
+import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
 
 export type BoardPiece = {
   piece: ChessPiece;
@@ -10,7 +11,9 @@ export type BoardPiece = {
 export type BoardState = Record<string, BoardPiece>;
 
 export function useChessBoard(): IUseChessBoard {
-  const [boardState, setBoardState] = useState<BoardState>({});
+  const [boardState, setBoardState] = useState<BoardState>(
+    CHESS_BOARD_DEFAULT_DISPLAY
+  );
 
   const findByPosition = (row: number, cell: string): BoardPiece | null => {
     const key = `${row}${cell}`;

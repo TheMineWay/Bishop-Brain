@@ -4,13 +4,14 @@ import styles from "./piece.module.pcss";
 
 type Props = {
   chessPiece: ChessPiece;
+  isWhite: boolean;
 };
 
-export default function Piece({ chessPiece }: Props) {
+export default function Piece({ chessPiece, isWhite }: Props) {
   return (
     <img
       className={styles.piece}
-      src={findChessPieceImage({ isWhite: true, chessPiece })}
+      src={findChessPieceImage({ isWhite, chessPiece })}
       alt={chessPiece}
     />
   );

@@ -2,7 +2,6 @@ import classNames from "classnames";
 
 import styles from "./chess-board.module.pcss";
 import Piece from "../piece/piece";
-import { ChessPiece } from "../../../types/chess/piece/chess-piece.enum";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 
 type Props = {
@@ -13,7 +12,9 @@ const WHITE = "bg-white",
   BLACK = "bg-primary-300";
 
 // eslint-disable-next-line no-empty-pattern
-export default function ChessBoard({}: Props) {
+export default function ChessBoard({
+  chessBoardInstance: { findByPosition },
+}: Props) {
   const facingWhite = true;
 
   const ABC = "abcdefgh".split("")[facingWhite ? "slice" : "reverse"]();
@@ -30,6 +31,8 @@ export default function ChessBoard({}: Props) {
             {[...new Array(8)].map((_, c) => {
               const cell = ABC[c];
 
+              const piece = findByPosition(row, cell);
+
               return (
                 <div
                   key={c}
@@ -44,7 +47,9 @@ export default function ChessBoard({}: Props) {
                   )}
                 >
                   <div className={styles["piece-place"]}>
-                    <Piece chessPiece={ChessPiece.PAWN} />
+                    {piece && (
+                      <Piece isWhite={piece.isWhite} chessPiece={piece.piece} />
+                    )}
                   </div>
                 </div>
               );
