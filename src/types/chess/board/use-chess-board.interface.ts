@@ -23,6 +23,7 @@ export interface IUseChessBoard {
     toCell: string
   ) => void;
   boardPiecesHistory: BoardPiecesMovementsHistory;
+  initialDisplay: BoardState;
 
   // Raw
   boardState: BoardState;

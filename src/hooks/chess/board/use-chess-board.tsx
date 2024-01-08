@@ -119,6 +119,7 @@ export function useChessBoard({
     deletePosition,
     movePosition,
     boardPiecesHistory,
+    initialDisplay,
 
     // Raw
     boardState,
