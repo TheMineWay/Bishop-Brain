@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState, useTransition } from "react";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
-import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
 import { generateChessBoardHoverEvents } from "../../../utils/chess/board/generate-chess-board-hover-events.util";
 import { BoardState } from "../../../types/chess/board/board-state.type";
 import { BoardPiece } from "../../../types/chess/board/board-piece.type";
-import styles from "@src/components/chess/board/chess-board.module.pcss";
 import { BoardPiecesMovementsHistory } from "../../../types/chess/board/board-pieces-movements-history.type";
+import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
+import styles from "@src/components/chess/board/chess-board.module.pcss";
 
-export function useChessBoard(): IUseChessBoard {
+type Options = {
+  initialDisplay?: BoardState;
+};
+
+export function useChessBoard({
+  initialDisplay = CHESS_BOARD_DEFAULT_DISPLAY,
+}: Options = {}): IUseChessBoard {
   const [, startTransition] = useTransition();
 
   const boardCellsRef = useRef<Record<string, HTMLDivElement | null>>({});
@@ -35,9 +41,7 @@ export function useChessBoard(): IUseChessBoard {
     return destroyEvents;
   }, [boardCellsRef, indexCellsRef]);
 
-  const [boardState, setBoardState] = useState<BoardState>(
-    CHESS_BOARD_DEFAULT_DISPLAY
-  );
+  const [boardState, setBoardState] = useState<BoardState>(initialDisplay);
 
   const [boardPiecesHistory, setBoardPiecesHistory] =
     useState<BoardPiecesMovementsHistory>([]);
