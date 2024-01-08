@@ -1,6 +1,7 @@
 import { MutableRefObject } from "react";
 import { BoardPiece } from "./board-piece.type";
 import { BoardState } from "./board-state.type";
+import { BoardPiecesMovementsHistory } from "./board-pieces-movements-history.type";
 
 export interface IUseChessBoard {
   findByPosition: (row: number, cell: string) => BoardPiece | null;
@@ -21,6 +22,7 @@ export interface IUseChessBoard {
     toRow: number,
     toCell: string
   ) => void;
+  boardPiecesHistory: BoardPiecesMovementsHistory;
 
   // Raw
   boardState: BoardState;

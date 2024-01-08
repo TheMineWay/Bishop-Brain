@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { IUseChessBoard } from "../../../types/chess/board/use-chess-board.interface";
 import { CHESS_BOARD_DEFAULT_DISPLAY } from "../../../constants/chess/board/chess-board-default-display.constant";
 import { generateChessBoardHoverEvents } from "../../../utils/chess/board/generate-chess-board-hover-events.util";
 import { BoardState } from "../../../types/chess/board/board-state.type";
 import { BoardPiece } from "../../../types/chess/board/board-piece.type";
 import styles from "@src/components/chess/board/chess-board.module.pcss";
+import { BoardPiecesMovementsHistory } from "../../../types/chess/board/board-pieces-movements-history.type";
 
 export function useChessBoard(): IUseChessBoard {
+  const [, startTransition] = useTransition();
+
   const boardCellsRef = useRef<Record<string, HTMLDivElement | null>>({});
   const indexCellsRef = useRef<Record<string | number, HTMLDivElement | null>>(
     {}
@@ -35,6 +38,9 @@ export function useChessBoard(): IUseChessBoard {
   const [boardState, setBoardState] = useState<BoardState>(
     CHESS_BOARD_DEFAULT_DISPLAY
   );
+
+  const [boardPiecesHistory, setBoardPiecesHistory] =
+    useState<BoardPiecesMovementsHistory>([]);
 
   const findByPosition = (row: number, cell: string): BoardPiece | null => {
     const key = `${row}${cell}`;
@@ -80,7 +86,27 @@ export function useChessBoard(): IUseChessBoard {
       };
     }
 
-    setBoardState(state);
+    // Update board state and add movement
+    startTransition(() => {
+      setBoardState(state);
+      addMovementToHistory(fromRow, fromCell, toRow, toCell);
+    });
+  };
+
+  const addMovementToHistory = (
+    fromRow: number,
+    fromCell: string,
+    toRow: number,
+    toCell: string
+  ) => {
+    setBoardPiecesHistory([
+      ...boardPiecesHistory,
+      {
+        from: `${fromRow}${fromCell}`,
+        to: `${toRow}${toCell}`,
+        at: new Date(Date.now()),
+      },
+    ]);
   };
 
   return {
@@ -88,6 +114,7 @@ export function useChessBoard(): IUseChessBoard {
     setPosition,
     deletePosition,
     movePosition,
+    boardPiecesHistory,
 
     // Raw
     boardState,
