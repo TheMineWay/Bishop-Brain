@@ -1,8 +1,6 @@
 import { MutableRefObject } from "react";
-import {
-  BoardPiece,
-  BoardState,
-} from "../../../hooks/chess/board/use-chess-board";
+import { BoardPiece } from "./board-piece.type";
+import { BoardState } from "./board-state.type";
 
 export interface IUseChessBoard {
   findByPosition: (row: number, cell: string) => BoardPiece | null;
